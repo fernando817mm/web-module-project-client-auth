@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialState = {
-    id: Date.now(),
     name: '',
     age: '',
-    email: ''
+    email: '',
 }
 
-const AddFriend = (props) => {
-    const { friends, setFriends } = props;
+const AddFriend = () => {
     const [ formValue, setFormValue ] = useState(initialState);
 
     const handleChange = (e) => {
@@ -20,9 +19,13 @@ const AddFriend = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setFriends([...friends, formValue]);
-        setFormValue(initialState);
-        console.log(friends);
+        axiosWithAuth().post('/friends', { ...formValue, id: Date.now() })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                alert(err);
+            })
     }
 
     return (

@@ -8,6 +8,7 @@ const FriendsList = (props) => {
 
     useEffect(() => {
         getData();
+        console.log('sanity check');
     }, [])
 
     const getData = () => {
@@ -23,7 +24,7 @@ const FriendsList = (props) => {
     return (
         <div>
             <h1>Friends List</h1>
-            <AddFriend friends={data} setFriends={setData}/>
+            <AddFriend/>
             {
                 data.map((friend, idx) => {
                     return (
