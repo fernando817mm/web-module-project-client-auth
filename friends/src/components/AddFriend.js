@@ -1,5 +1,35 @@
 import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import styled from 'styled-components';
+
+const Form = styled.div`
+    width: 35%;
+    margin: auto;
+    padding: 2% 0;
+    background-color: lightgreen;
+    border-radius: 3em;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    & form{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+
+        & input{
+            margin: 2% 0;
+        }
+    }
+    button{
+        width: auto;
+        margin: auto;
+    }
+    label{
+        font-weight: bold;
+    }
+`
 
 const initialState = {
     name: '',
@@ -32,7 +62,7 @@ const AddFriend = (props) => {
     }
 
     return (
-        <div>
+        <Form>
             <h2>Add Friend: </h2>
             <form onSubmit={handleSubmit}>
                 <label>Name: &nbsp;
@@ -61,7 +91,7 @@ const AddFriend = (props) => {
                 </label>
                 <button>Add Friend</button>
             </form>
-        </div>
+        </Form>
     )
 }
 
