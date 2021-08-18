@@ -1,5 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Div = styled.div`
+    width: 50%;
+    margin: auto;
+    font-weight: bold;
+    font-size: 1.25rem;
+
+    & form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 50%;
+        height: 95vh;
+        margin: auto;
+        margin-top: -5vh;
+    }
+    input{
+        margin: 5% auto;
+    }
+    button{
+        width: 20%;
+        margin: 0 auto;
+    }
+`
 
 const initialState = {
     username: '',
@@ -33,7 +59,7 @@ const Login = (props) => {
     }
 
     return (
-        <div>
+        <Div>
             <form onSubmit={handleSubmit}>
                 <label>Username: &nbsp;
                     <input
@@ -53,7 +79,7 @@ const Login = (props) => {
                 </label>
                 <button>Login</button>
             </form>
-        </div>
+        </Div>
     )
 }
 
