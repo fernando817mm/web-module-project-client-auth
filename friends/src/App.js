@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -39,6 +40,8 @@ const Nav = styled.nav`
 `
 
 function App() {
+  const [ loggedIn, setLoggedIn] = useState(false); /* todo: make this function so that the links below can show or hide based on the loggedIn boolean so that refreshing is not required to toggle the links */
+
   return (
     <div className="App">
       <Router>
