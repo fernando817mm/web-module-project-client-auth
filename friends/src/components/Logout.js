@@ -8,7 +8,7 @@ const Logout = (props) => {
                 localStorage.removeItem('token');
                 props.history.push('/');
             })
-    }, [])
+    })
 
     return <div></div>;
 }

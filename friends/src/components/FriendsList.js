@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import AddFriend from './AddFriend';
+import Friend from './Friend';
 
 const FriendsList = (props) => {
     const [ data, setData ] = useState([]);
 
     useEffect(() => {
         getData();
-        console.log('sanity check');
     }, [])
 
     const getData = () => {
@@ -24,12 +24,10 @@ const FriendsList = (props) => {
     return (
         <div>
             <h1>Friends List</h1>
-            <AddFriend/>
+            <AddFriend setState={setData}/>
             {
                 data.map((friend, idx) => {
-                    return (
-                        <h2 key={idx}>{friend.name}</h2>
-                    )
+                    return <Friend name={friend.name} age={friend.age} email={friend.email} key={idx}/>
                 })
             }
         </div>

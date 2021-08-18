@@ -7,8 +7,10 @@ const initialState = {
     email: '',
 }
 
-const AddFriend = () => {
+const AddFriend = (props) => {
     const [ formValue, setFormValue ] = useState(initialState);
+
+    const { setState } = props;
 
     const handleChange = (e) => {
         setFormValue({
@@ -21,7 +23,8 @@ const AddFriend = () => {
         e.preventDefault();
         axiosWithAuth().post('/friends', { ...formValue, id: Date.now() })
             .then(res => {
-                console.log(res);
+                setState(res.data);
+                setFormValue(initialState);
             })
             .catch(err => {
                 alert(err);

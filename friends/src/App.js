@@ -1,6 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
+import styled from 'styled-components';
+
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Home from './components/Home';
@@ -8,14 +10,47 @@ import FriendsList from './components/FriendsList';
 
 import PrivateRoute from './components/PrivateRoute';
 
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  background-color: lightcoral;
+
+  .navLinks{
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    justify-content: space-between;
+  }
+
+  & a{
+    color: black;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: bolder;
+
+    &:hover{
+      color: whitesmoke;
+    }
+  }
+`
+
 function App() {
   return (
     <div className="App">
       <Router>
-        <Link to='/'>Home</Link>
-        { !localStorage.getItem('token') && <Link to='/login'>Login</Link> }
-        { localStorage.getItem('token') && <Link to='/logout'>Logout</Link> }
-        { localStorage.getItem('token') && <Link to='/friends'>Friends</Link> }
+        <Nav>
+          <Link to='/'>App</Link>
+          <div className='navLinks'>
+            <Link to='/'>Home</Link>
+            { !localStorage.getItem('token') && <Link to='/login'>Login</Link> }
+            { localStorage.getItem('token') && <Link to='/logout'>Logout</Link> }
+            { localStorage.getItem('token') && <Link to='/friends'>Friends</Link> }
+          </div>
+        </Nav>
         <Switch>
           <PrivateRoute exact path='/friends' component={FriendsList}/>
           <PrivateRoute path='/logout' component={Logout}/>
@@ -23,6 +58,7 @@ function App() {
           <Route path='/' component={Home}/>
         </Switch>
       </Router>
+
     </div>
   );
 }
